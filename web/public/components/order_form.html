@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Form</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Order Form</h2>
+        <form id="orderForm">
+            <div class="form-group">
+                <label for="items">Select Items:</label>
+                <div id="items">
+                    <div class="item">
+                        <input type="checkbox" id="item1" name="items" value="Item 1">
+                        <label for="item1">Item 1 - $10 (Weight: 1kg)</label>
+                    </div>
+                    <div class="item">
+                        <input type="checkbox" id="item2" name="items" value="Item 2">
+                        <label for="item2">Item 2 - $15 (Weight: 2kg)</label>
+                    </div>
+                    <div class="item">
+                        <input type="checkbox" id="item3" name="items" value="Item 3">
+                        <label for="item3">Item 3 - $20 (Weight: 3kg)</label>
+                    </div>
+                    <!-- Add more items as needed -->
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Place Order</button>
+        </form>
+    </div>
+    <script src="../assets/js/app.js"></script>
+</body>
+</html>
