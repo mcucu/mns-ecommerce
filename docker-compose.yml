@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+  api:
+    # image: golang:alpine
+    build:
+      context: ./api
+      dockerfile: ./Dockerfile
+    env_file: ./api/.env
+    ports:
+      - 3000:3000
+    volumes:
+      - ./api:/app
+    restart: on-failure
+
+  web:
+    # image: golang:alpine
+    build:
+      dockerfile: ./Dockerfile
+      context: ./web
+    env_file: ./web/.env
+    ports:
+      - 8080:8080
+    volumes:
+      - ./web:/app
+    restart: on-failure
