@@ -20,14 +20,6 @@ func NewOrderService(opt Options) IOrderService {
 }
 
 func (s *OrderService) CreateOrder(order payloads.OrderRequest) ([]models.Package, error) {
-	// if order.TotalPrice > priceLimit {
-	// 	return nil, errors.New("item price exceeds the price limit")
-	// }
-
-	// if order.TotalWeight > weightLimit {
-	// 	return nil, errors.New("item weight exceeds the weight limit")
-	// }
-
 	packages := splitIntoPackages(order.Items)
 	return packages, nil
 }
@@ -67,8 +59,6 @@ func splitIntoPackages(items []payloads.ProductRequest) []models.Package {
 }
 
 func calculateCourierCost(weight float64) float64 {
-	// Example courier cost calculation: $15 for every 500g
-	// return math.Ceil(float64(weight)/500.0) * 15
 	if weight > 0 && weight <= 200 {
 		return 5
 	} else if weight > 200 && weight <= 500 {
