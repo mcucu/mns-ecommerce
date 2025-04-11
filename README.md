@@ -36,6 +36,10 @@ mns-ecommerce
 │   └── package.json                # JavaScript dependencies
 └── README.md                       # Project documentation
 ```
+## Demo App
+- api service : `https://mns-api-365083fe0315.herokuapp.com`
+- api doc : `https://mns-api-365083fe0315.herokuapp.com/swagger/index.html`
+- web service : `https://mns-web-9a0a30f12fa7.herokuapp.com`
 
 ## Setup Instructions
 ### Clone Project
@@ -85,8 +89,3 @@ mns-ecommerce
 - Go for the backend server and business logic.
 - HTML5, CSS, and JavaScript for the frontend interface.
 - Bootstrap for responsive design (if included in the assets).
-
-## Demo App
-- api service : `https://mns-api-365083fe0315.herokuapp.com`
-- api doc : `https://mns-api-365083fe0315.herokuapp.com/swagger/index.html`
-- web service : `https://mns-web-9a0a30f12fa7.herokuapp.com` --> TODO
