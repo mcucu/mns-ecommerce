@@ -5,90 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Ordering System</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/styles.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #spinner {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+        }
+    </style>
 </head>
 <body>
+    <div id="spinner" class="text-center">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
     <div class="container">
-        <h1>Online Ordering System</h1>
-        <div id="item-list">
+        <h1 class="text-center">Online Ordering System</h1>
+        <div id="item-list" class="mt-4">
             <h2>Items</h2>
-            <ul>
-                <li><input type="checkbox" class="item" data-name="Item 1" data-price="100" data-weight="200"> Item 1 - $100 - 200g</li>
-                <li><input type="checkbox" class="item" data-name="Item 2" data-price="150" data-weight="300"> Item 2 - $150 - 300g</li>
-                <li><input type="checkbox" class="item" data-name="Item 3" data-price="200" data-weight="400"> Item 3 - $200 - 400g</li>
-                <li><input type="checkbox" class="item" data-name="Item 4" data-price="50" data-weight="100"> Item 4 - $50 - 100g</li>
-                <li><input type="checkbox" class="item" data-name="Item 5" data-price="175" data-weight="250"> Item 5 - $175 - 250g</li>
+            <ul class="list-group">
+                <!-- Items will be dynamically loaded here -->
             </ul>
         </div>
-        <button id="place-order" class="btn btn-primary">Place Order</button>
-        <div id="result"></div>
+        <button id="place-order" class="btn btn-primary mt-3">Place Order</button>
+        <button id="clear-order" class="btn btn-warning mt-3 disabled">Clear</button>
+        <div id="result" class="mt-4"></div>
     </div>
 
     <script>
-        const apiUrl = 'http://localhost:3000'; // Adjust this URL to your server's address
+        // define global variables
+        const apiUrl = 'http://localhost:3000'; // Adjust this URL to your backend server
+        const apiKey = 'your_secret_key'; // Replace with your actual API key
         $.ajaxSetup({
             beforeSend: function(xhr) {
-                xhr.setRequestHeader('X-API-Key', 'your_secret_key');
+                xhr.setRequestHeader('X-API-Key', apiKey);
             }
         });
-        $(document).ready(function () {
-            $('#place-order').click(function () {
-                const selectedItems = [];
-                $('.item:checked').each(function () {
-                    selectedItems.push({
-                        name: $(this).data('name'),
-                        price: $(this).data('price'),
-                        weight: $(this).data('weight')
-                    });
-                });
-
-                const payload = {
-                    items: selectedItems,
-                    total_weight: selectedItems.reduce((total, item) => total + item.weight, 0),
-                    total_price: selectedItems.reduce((total, item) => total + item.price, 0),
-                }
-                if (selectedItems.length === 0) {
-                    alert('Please select at least one item.');
-                    return;
-                }
-                $.ajax({
-                    url: apiUrl + '/orders',
-                    method: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify(payload),
-                    success: function (response) {
-                        const {
-                            success,
-                            message,
-                            data
-                        } = response;
-
-                        if (!success) {
-                            alert(message);
-                            return;
-                        }
-                        if (data.length === 0) {
-                            alert('No packages were created.');
-                            return;
-                        }
-
-                        let resultHtml = '<h2>This order has the following packages:</h2>';
-                        data.forEach((pkg, index) => {
-                            resultHtml += `<h3>Package ${index + 1}</h3>`;
-                            resultHtml += `<p>Items: ${pkg.items.map(item => item.name).join(', ')}</p>`;
-                            resultHtml += `<p>Total Weight: ${pkg.total_weight}g</p>`;
-                            resultHtml += `<p>Total Price: $${pkg.total_price.toFixed(2)}</p>`;
-                            resultHtml += `<p>Courier Cost: $${pkg.courier_cost.toFixed(2)}</p>`;
-                        });
-                        $('#result').html(resultHtml);
-                    },
-                    error: function () {
-                        alert('An error occurred while placing the order.');
-                    }
-                });
-            });
-        });
     </script>
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
