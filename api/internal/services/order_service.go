@@ -38,7 +38,7 @@ func splitIntoPackages(items []payloads.ProductRequest) []models.Package {
 
 	for _, item := range items {
 		// If adding the item exceeds $250, finalize the current package
-		if currentPackage.TotalPrice+item.Price > 250 {
+		if currentPackage.TotalPrice+item.Price >= 250 {
 			currentPackage.CourierCost = calculateCourierCost(currentPackage.TotalWeight)
 			packages = append(packages, currentPackage)
 			currentPackage = models.Package{}
