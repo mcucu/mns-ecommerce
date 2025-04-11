@@ -89,4 +89,4 @@ mns-ecommerce
 ## Demo App
 - api service : `https://mns-api-365083fe0315.herokuapp.com`
 - api doc : `https://mns-api-365083fe0315.herokuapp.com/swagger/index.html`
-- web service : `https://mns-ecommerce-web.herokuapp.com/` --> TODO
+- web service : `https://mns-web-9a0a30f12fa7.herokuapp.com` --> TODO
