@@ -11,28 +11,30 @@ mns-ecommerce
 │   │   └── root.go                 # Register all api dependencies
 │   ├── internal
 │   │   ├── handlers                # Handles HTTP requests
-│   │   │   └── order_handler.go    # Handles HTTP requests related to orders
+│   │   │   └── handler.go          # Handles HTTP requests
 │   │   ├── models
-│   │   │   └── order.go            # Defines the Order struct and related methods
+│   │   │   └── order.go            # Defines the Model struct and related methods
 │   │   ├── services
-│   │   │   └── order_service.go    # Logic for packaging orders based on rules
+│   │   │   └── service.go          # Logic for packaging orders based on rules
+│   │   ├── repositories
+│   │   │   └── repository.go       # DB Query based on rules
 │   │   └── utils
 │   │       └── validation.go       # Utility functions for validating order data
 │   ├── go.mod                      # Go module file for dependencies
 │   ├──main.go                      # Entry point of the application
-│   ├──ecommerce.dh                 # sqlite db
+│   ├──ecommerce.db                 # sqlite db
 │   └── README.md                   # API documentation
 ├── web
-│   ├── assets
-│   │   ├── css
-│   │   │   └── styles.css      # CSS styles for the web application
-│   │   └── js
-│   │       └── app.js          # JavaScript code for handling item selection
-│   ├── index.html              # Main HTML file for the web application
-│   ├── components
-│   │       └── order_form.html     # HTML structure for the order form
-│   └── README.md                   # API documentation
-└── README.md                   # Project documentation
+│   ├── public
+│   │    ├── assets
+│   │    │    ├── css
+│   │    │    │    └── styles.css   # CSS styles for the web application
+│   │    │    └── js
+│   │    │         └── app.js       # JavaScript code for handling item selection
+│   │    └── index.html             # Main HTML file for the web application
+│   ├── index.js                    # JavaScript code for handling item selection
+│   └── package.json                # JavaScript dependencies
+└── README.md                       # Project documentation
 ```
 
 ## Setup Instructions
@@ -45,7 +47,7 @@ mns-ecommerce
 
 ### Setup dotenv
 - create .env file for api service : `cp ./api/.env.example ./api/.env`
-- create .env file for web service : `cp ./web/.env.example ./web/.env`
+<!-- - create .env file for web service : `cp ./web/.env.example ./web/.env` -->
 
 ### Run all services
 - run docker composer : `docker-compose up --build`
@@ -85,8 +87,6 @@ mns-ecommerce
 - Bootstrap for responsive design (if included in the assets).
 
 ## Demo App
-- api service : `https://mns-ecommerce-api.herokuapp.com/`
-- web service : `https://mns-ecommerce-web.herokuapp.com/`
-
-## System Diagram
-![Alt text](docs/ecommerce.svg?raw=true "System Diagram")
+- api service : `https://mns-api-365083fe0315.herokuapp.com`
+- api doc : `https://mns-api-365083fe0315.herokuapp.com/swagger/index.html`
+- web service : `https://mns-ecommerce-web.herokuapp.com/` --> TODO
