@@ -9,7 +9,7 @@ const hideSpinner = () => {
 
 const fetchProducts = async () => {
     try {
-        const response = await await $.ajax({
+        const response = await $.ajax({
             url: apiUrl + '/products',
             method: 'GET',
             contentType: 'application/json'
@@ -91,34 +91,18 @@ const postOrder = async (payload) => {
 
 const loadItems = async () => {
     showSpinner();
-    // Simulate an API call to fetch items
-    const items = [
-        { name: "Item 1", price: 100, weight: 200 },
-        { name: "Item 2", price: 150, weight: 300 },
-        { name: "Item 3", price: 200, weight: 400 },
-        { name: "Item 4", price: 50, weight: 100 },
-        { name: "Item 5", price: 175, weight: 250 }
-    ];
-
+    let items = []
     try {
-        const products = await fetchProducts();
-        if (!products) {
+        items = await fetchProducts();
+        if (!items) {
             alert('Failed to load products. Please try again.');
             hideSpinner();
             return;
         }
-        if (products.length === 0) {
+        if (items.length === 0) {
             alert('No products available.');
             hideSpinner();
             return;
-        } else {
-            products.forEach(product => {
-                items.push({
-                    name: product.name,
-                    price: product.price,
-                    weight: product.weight
-                });
-            })
         }
     } catch (error) {
         alert('Failed to load products. Please try again.');

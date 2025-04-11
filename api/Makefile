@@ -21,11 +21,11 @@ check-goswagger:
 	which ${GOSWAGGER} || (echo "please install go-swagger from https://goswagger.io/install.html" && exit 1)
 
 swagger: check-goswag
-	GO111MODULE=on ${GOSWAG} init -g internal/app/server/router.go -o api/docs
+	GO111MODULE=on ${GOSWAG} init -g cmd/router.go -o doc
 
 swagger-md: check-goswagger
-	GO111MODULE=on ${GOSWAG} init -g internal/app/server/router.go -o api/docs
-	GO111MODULE=on ${GOSWAGGER} generate markdown -f api/docs/swagger.json --output docs/api.md
+	GO111MODULE=on ${GOSWAG} init -g cmd/router.go -o doc
+	GO111MODULE=on ${GOSWAGGER} generate markdown -f doc/swagger.json --output doc/api.md
 
 #MIGRATION RELATED
 check-migrate:

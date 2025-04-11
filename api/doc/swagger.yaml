@@ -1,0 +1,87 @@
+basePath: /
+definitions:
+  payloads.OrderRequest:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/payloads.ProductRequest'
+        type: array
+    type: object
+  payloads.ProductRequest:
+    properties:
+      name:
+        type: string
+      price:
+        type: number
+      weight:
+        type: number
+    type: object
+  payloads.Response:
+    properties:
+      code:
+        type: integer
+      data: {}
+      exceptions: {}
+      message:
+        type: string
+      success:
+        type: boolean
+    type: object
+info:
+  contact:
+    email: mhd.cucu@gmail.com
+    name: mcucu
+  description: mns-ecommerce Service
+  title: mns-ecommerce Service
+  version: 1.0.0
+paths:
+  /orders:
+    post:
+      consumes:
+      - application/json
+      description: Place Order.
+      parameters:
+      - description: Order Request
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/payloads.OrderRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/payloads.Response'
+      security:
+      - ApiStaticToken: []
+      summary: Place Order.
+      tags:
+      - Order
+  /product:
+    get:
+      consumes:
+      - application/json
+      description: GetProducts.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/payloads.Response'
+      security:
+      - ApiStaticToken: []
+      summary: GetProducts.
+      tags:
+      - Product
+schemes:
+- https
+- http
+securityDefinitions:
+  ApiStaticToken:
+    in: header
+    name: X-API-Key
+    type: apiKey
+swagger: "2.0"

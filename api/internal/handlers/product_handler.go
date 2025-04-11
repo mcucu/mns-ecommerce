@@ -17,6 +17,15 @@ func NewProductHandler(opt Options) *ProductHandler {
 	}
 }
 
+// GetProducts godoc
+// @Summary GetProducts.
+// @Description GetProducts.
+// @Tags Product
+// @Accept json
+// @Produce json
+// @Router /products [get]
+// @Success 200 {object} payloads.Response
+// @Security ApiStaticToken
 func (h *ProductHandler) GetProducts(c echo.Context) error {
 	// Logic to get all products
 	products, err := h.ProductService.GetAll()

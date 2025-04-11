@@ -17,6 +17,16 @@ func NewOrderHandler(opt Options) *OrderHandler {
 	}
 }
 
+// CreateOrder godoc
+// @Summary Place Order.
+// @Description Place Order.
+// @Tags Order
+// @Accept json
+// @Produce json
+// @Router /orders [post]
+// @Param payload body payloads.OrderRequest true "Order Request"
+// @Success 200 {object} payloads.Response
+// @Security ApiStaticToken
 func (h *OrderHandler) CreateOrder(c echo.Context) error {
 	req := new(payloads.OrderRequest)
 	if err := c.Bind(req); err != nil {
@@ -45,15 +55,5 @@ func (h *OrderHandler) CreateOrder(c echo.Context) error {
 		Success: true,
 		Message: http.StatusText(http.StatusOK),
 		Data:    packages,
-	})
-}
-
-func (h *OrderHandler) GetOrder(c echo.Context) error {
-	// Logic to get an order
-	return c.JSON(http.StatusOK, payloads.Response{
-		Code:    http.StatusOK,
-		Success: true,
-		Message: http.StatusText(http.StatusOK),
-		Data:    nil,
 	})
 }
