@@ -1,5 +1,10 @@
 const express = require('express');
 const cors = require('cors');
+const dotenv = require('dotenv');
+
+dotenv.config();
+const appEnv = process.env;
+const appPort = appEnv.APP_PORT || 8080;
 
 const app = express();
 app.use(cors());
@@ -8,8 +13,8 @@ app.use(express.static('public'))
 /**
  * startServer
  */
-server = app.listen(8080, function() {
-    console.info(`App is listening on http://localhost:8080`);
+server = app.listen(appPort, function() {
+    console.info(`App is listening on http://localhos:${appPort}`);
 });
 
 /**
